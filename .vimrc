@@ -1,3 +1,7 @@
+" Set encoding
+scriptencoding utf-8
+set encoding=utf-8
+
 " Vundle plugin with plugins
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -62,15 +66,15 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-execute pathogen#infect()
+"execute pathogen#infect()
 let g:nerdtree_tabs_open_on_console_startup=0
 let g:nerdtree_tabs_focus_on_files=1
-source ~/.vimrc_projects
 
 set number
 set list listchars=tab:→\ ,trail:·
 
 set backupdir=$HOME/.vim/backup
+set nobackup
 set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
@@ -82,6 +86,13 @@ map <C-S-Tab> :bprevious<cr>
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+if exists('project#rc')
+    let g:project_use_nerdtree = 1
+    set rtp+=~/.vim/bundle/vim-project/
+    call project#rc("~/work")
+    source ~/.vimrc_projects
+endif
 
 " syntstic (syntax checker)
 let g:syntastic_always_populate_loc_list = 1
