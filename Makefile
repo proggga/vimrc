@@ -1,10 +1,14 @@
 HEADER_FILES = vim.git
-init:
-	-@test ! -d ~/.vim && mkdir ~/.vim
-	-@test ! -d ~/.vim/backup && mkdir ~/.vim/backup
-	-@test ! -d ~/.vim/bundle && mkdir ~/.vim/bundle
-	-@test ! -d ~/.vim/bundle && mkdir ~/.vim/bundle
-	-@test ! -d ~/.vim/bundle/Vundle.vim && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+init: install
+	-@test ! -d $(CURDIR)/.backup && mkdir $(CURDIR)/.backup || true
+	-@test -L ~/.vimrc && mv ~/.vimrc $(CURDIR)/.backup/.vimrc_backup_link || true
+	-@test -f ~/.vimrc && mv ~/.vimrc $(CURDIR)/.backup/.vimrc_backup || true
+	-@test ! -L ~/.vimrc && ln -s $(CURDIR)/.vimrc ~/.vimrc || true
+	-@test ! -d ~/.vim && mkdir ~/.vim || true
+	-@test ! -d ~/.vim/backup && mkdir ~/.vim/backup || true
+	-@test ! -d ~/.vim/bundle && mkdir ~/.vim/bundle || true
+	-@test ! -d ~/.vim/bundle && mkdir ~/.vim/bundle || true
+	-@test ! -d ~/.vim/bundle/Vundle.vim && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim || true
 	vim +PluginInstall +qall
 
 install:

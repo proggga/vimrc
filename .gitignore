@@ -1,0 +1,3 @@
+vim.git
+.backup/*
+!.backup/.gitkeep
