@@ -16,6 +16,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-sensible'
+Plugin 'amiorin/vim-project'
 "Plugin ''
 
 call vundle#end()
@@ -25,8 +26,6 @@ filetype plugin indent on
 
 " use VIM not VI
 set nocompatible
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
 
 set cursorline
 "hi CursorLine term=bold cterm=bold guibg=Grey40
@@ -79,6 +78,7 @@ set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 
+map <C-n> :NERDTreeToggle<CR>
 map <F3> :noh<CR>
 map <F4> :UnusedImports<CR>
 map <C-Tab> :bnext<cr>
@@ -87,11 +87,13 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-if exists('project#rc')
-    let g:project_use_nerdtree = 1
+let vimproj=$HOME.'/.vim/bundle/vim-project'
+let projects_list_file=$HOME.'/.vimrc_projects'
+if isdirectory(vimproj) && filereadable(projects_list_file)
     set rtp+=~/.vim/bundle/vim-project/
     call project#rc("~/work")
     source ~/.vimrc_projects
+    let g:project_use_nerdtree = 1
 endif
 
 " syntstic (syntax checker)
@@ -104,4 +106,3 @@ let g:syntastic_python_checkers = ['pylint']
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-
