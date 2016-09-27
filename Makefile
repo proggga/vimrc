@@ -7,17 +7,25 @@ init:
 	-@test ! -d ~/.vim/bundle/Vundle.vim && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall
 
-checkvim:
-	-@test ! -d vim.git && instvim
+install:
+	@if [ ! -d "vim.git" ]; then echo "installing vim"; \
+		git clone https://github.com/vim/vim vim.git; \
+		cd vim.git/src; \
+		make distclean; \
+		./configure --with-features=huge --enable-rubyinterp --enable-python3interp --enable-pythoninterp --enable-perlinterp --enable-multibyte --enable-luainterp --with-x --enable-gui=auto; \
+		make; \
+		sudo make install; \
+	else \
+		echo "vim installed"; \
+	fi;
 
-instvim:
-	ifeq ('$(wildcard $(HEADER_FILES))','')
-		git clone https://github.com/vim/vim vim.git
-		cd vim.git/src
-		make distclean
-		./configure --with-features=huge --enable-rubyinterp --enable-python3interp --enable-pythoninterp --enable-perlinterp --enable-multibyte --enable-luainterp --with-x --enable-gui=auto 
-		make
-		sudo make install
-	else
-		echo "installed"
-	endif
+update:
+	@if [ ! -d "vim.git" ]; then echo "installing vim"; \
+		echo "yolo"; \
+		git clone https://github.com/vim/vim vim.git; \
+	fi;
+	cd vim.git/src; \
+	make distclean; \
+	./configure --with-features=huge --enable-rubyinterp --enable-python3interp --enable-pythoninterp --enable-perlinterp --enable-multibyte --enable-luainterp --with-x --enable-gui=auto; \
+	make; \
+	sudo make install; \
