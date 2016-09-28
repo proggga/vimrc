@@ -4,6 +4,7 @@ init: install
 	-@test -L ~/.vimrc && mv ~/.vimrc $(CURDIR)/.backup/.vimrc_backup_link || true
 	-@test -f ~/.vimrc && mv ~/.vimrc $(CURDIR)/.backup/.vimrc_backup || true
 	-@test ! -L ~/.vimrc && ln -s $(CURDIR)/.vimrc ~/.vimrc || true
+	-@test ! -L ~/.vim_plugins && ln -s $(CURDIR)/.vim_plugins ~/.vim_plugins || true
 	-@test ! -d ~/.vim && mkdir ~/.vim || true
 	-@test ! -d ~/.vim/backup && mkdir ~/.vim/backup || true
 	-@test ! -d ~/.vim/bundle && mkdir ~/.vim/bundle || true

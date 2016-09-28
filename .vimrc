@@ -1,35 +1,25 @@
-" Set encoding
+" -------- Encoding UTF-8  -------- "
 scriptencoding utf-8
 set encoding=utf-8
 
-" Vundle plugin with plugins
+" ----- Vundle plugin with plugins ----- "
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'wikitopian/hardmode'
-Plugin 'kien/ctrlp.vim'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'bling/vim-bufferline'
-Plugin 'akhaku/vim-java-unused-imports'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-sensible'
-Plugin 'amiorin/vim-project'
-"Plugin ''
+" - Import Plugins - "
+let vim_plugins_file=$HOME.'/.vim_plugins'
+if filereadable(vim_plugins_file)
+    source ~/.vim_plugins
+endif
 
 call vundle#end()
 filetype plugin indent on
-" end of Vundle plugin
+" --- end of Vundle plugin --- "
 
 
-" use VIM not VI
 set nocompatible
-
 set cursorline
-"hi CursorLine term=bold cterm=bold guibg=Grey40
-hi CursorLine cterm=NONE ctermbg=233 guifg=#121212
 set tabstop=4
 set shiftwidth=4
 set ignorecase
@@ -40,32 +30,8 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
-map Q gq
 
-if has('mouse')
-  set mouse=a
-endif
-syntax on
-set hlsearch
-if has("autocmd")
-  augroup vimrcEx
-  au!
-  autocmd FileType text setlocal textwidth=78
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-  augroup END
-else
-  set autoindent		" always set autoindenting on
-endif " has("autocmd")
-
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
-
-"execute pathogen#infect()
+" --- nerdtree configuration --- "
 let g:nerdtree_tabs_open_on_console_startup=0
 let g:nerdtree_tabs_focus_on_files=1
 
@@ -106,3 +72,5 @@ let g:syntastic_python_checkers = ['pylint']
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
+hi CursorLine cterm=NONE ctermbg=black
