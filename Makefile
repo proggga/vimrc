@@ -10,7 +10,17 @@ VUNDLE_LINK = https://github.com/VundleVim/Vundle.vim.git
 VUNDLE_DIR = $(VIM_BUNDLE)/Vundle.vim
 VIM_PROJ_DIR = $(CURDIR)/vim.git
 VIM_GITHUB = https://github.com/vim/vim
-CONFIGURE_OPTIONS = "--with-features=huge --enable-rubyinterp --enable-python3interp --enable-pythoninterp --enable-perlinterp --enable-multibyte --enable-luainterp --with-x --enable-gui=auto"
+CONFIGURE_OPTIONS = \
+	--with-features=huge \
+	--enable-rubyinterp \
+	--enable-python3interp \
+	--enable-pythoninterp \
+	--enable-perlinterp \
+	--enable-multibyte \
+	--enable-luainterp \
+	--with-x \
+	--enable-gui=auto \
+
 init: install
 	# PREPARE DIRS
 	-@test ! -d $(SCRIPT_BACKUP) && mkdir $(SCRIPT_BACKUP) || true
