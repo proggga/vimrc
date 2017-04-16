@@ -68,7 +68,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:pymode_lint_on_write = 1
-let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers = ['flake8', 'pep8']
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
