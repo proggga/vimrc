@@ -90,6 +90,10 @@ generatelinks:
 	# INSTALL PLUGINS
 	vim +PluginInstall +qall
 
+up-plug:
+	# INSTALL PLUGINS
+	vim +PluginInstall +qall
+
 installvim: preconfigure
 ifneq ($(VIMDIR_EXISTS),True)
 	@echo "installing vim";
