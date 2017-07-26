@@ -59,6 +59,7 @@ if isdirectory(vimproj) && filereadable(projects_list_file)
     set rtp+=~/.vim/bundle/vim-project/
     call project#rc("~/work")
     source ~/.vimrc_projects
+    let radon_always_on
     let g:project_use_nerdtree = 1
 endif
 
@@ -74,3 +75,6 @@ autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 hi CursorLine cterm=NONE ctermbg=black
+
+syntax enable
+filetype plugin indent on
