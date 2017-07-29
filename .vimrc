@@ -59,6 +59,7 @@ if isdirectory(vimproj) && filereadable(projects_list_file)
     set rtp+=~/.vim/bundle/vim-project/
     call project#rc("~/work")
     source ~/.vimrc_projects
+    let radon_always_on
     let g:project_use_nerdtree = 1
 endif
 
@@ -86,3 +87,6 @@ if jedi#init_python()
         autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
     augroup END
 endif
+
+syntax enable
+filetype plugin indent on
