@@ -32,8 +32,10 @@ KEY_FEATURES = --with-features=huge --enable-multibyte
 ALL_CONFIGURE_OPTIONS = \
 	--with-features=huge \
 	--enable-rubyinterp \
-	--enable-python3interp \
-	--enable-pythoninterp \
+	--enable-pythoninterp=dynamic \
+	--with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
+	--enable-python3interp=dynamic \
+	--with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
 	--enable-perlinterp \
 	--enable-multibyte \
 	--enable-luainterp \
