@@ -1,6 +1,6 @@
 FROM ubuntu
 
-MAINTAINER Mikhail Fesenko version: 0.1
+MAINTAINER Mikhail Fesenko version: 0.0.2
 
 RUN apt-get update
 
