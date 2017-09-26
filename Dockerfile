@@ -40,4 +40,8 @@ RUN git clone  https://github.com/proggga/vimrc.git /root/vimrc
 
 RUN cd /root/vimrc && make generatelinks
 
+RUN apt-get install -y locales
+
+RUN locale-gen ru_RU.UTF-8 && dpkg-reconfigure locales
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
