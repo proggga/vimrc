@@ -7,6 +7,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'VundleVim/Vundle.vim'
 " - Import Plugins - "
 let vim_plugins_file=$HOME.'/.vim_plugins'
 if filereadable(vim_plugins_file)
@@ -49,8 +50,10 @@ map <F3> :noh<CR>
 map <F4> :UnusedImports<CR>
 map <C-Tab> :bnext<cr>
 map <C-S-Tab> :bprevious<cr>
+
+let g:airline#extensions#ale#enabled = 1
+
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let vimproj=$HOME.'/.vim/bundle/vim-project'
@@ -73,6 +76,9 @@ let g:syntastic_python_checkers = ['flake8', 'pep8']
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 hi CursorLine cterm=NONE ctermbg=black
 if exists("jedi#init_python")
